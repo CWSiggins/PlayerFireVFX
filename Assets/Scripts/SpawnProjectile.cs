@@ -9,6 +9,8 @@ public class SpawnProjectile : MonoBehaviour
     public RotateToMouse rotateToMouse;
 
     private GameObject effectToSpawn;
+    
+    [SerializeField] GameObject muzzleFlash;
 
     void Start()
     {
@@ -26,10 +28,12 @@ public class SpawnProjectile : MonoBehaviour
     void SpawnVFX()
     {
         GameObject vfx;
+        GameObject muzzle;
         if(firePoint != null)
         {
             vfx = Instantiate(effectToSpawn, firePoint.transform.position, Quaternion.identity);
-            if(rotateToMouse != null)
+            muzzle = Instantiate(muzzleFlash, firePoint.transform.position, Quaternion.identity);
+            if (rotateToMouse != null)
             {
                 vfx.transform.localRotation = rotateToMouse.GetRotation();
             }
